@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import {ControlPanel, Logo} from "./components/index.js"
+import {ControlPanel, Logo} from "./components"
 
 const Discription = styled.div`
     font-style: italic;

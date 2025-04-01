@@ -1,8 +1,11 @@
 import {getUser} from "./get-user.js"
 import {addUser} from "./add-user.js"
-import {createSession} from "./create-session.js"
+import {sessions} from "./sessions.js"
 
 export const server = {
+    async logout(session) {
+        sessions.remove(session)
+    },
     async authorize(authLogin, authPassword) {
         const user = await getUser(authLogin)
 
@@ -22,7 +25,12 @@ export const server = {
 
         return {
             error: null,
-            res: createSession(user.role_id),
+            res: {
+                id: user.id,
+                login: user.login,
+                roleId: user.role_id,
+                session: sessions.create(user),
+            },
         }
     },
 
@@ -40,7 +48,12 @@ export const server = {
 
         return {
             error: null,
-            res: createSession(user.role_id),
+            res: {
+                id: user.id,
+                login: user.login,
+                roleId: user.role_id,
+                session: sessions.create(user),
+            },
         }
     }
 }
