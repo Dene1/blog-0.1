@@ -35,16 +35,18 @@ export const server = {
     },
 
     async register(regLogin, regPassword) {
-        const user = await getUser(regLogin)
+        const existedUser = await getUser(regLogin)
 
-        if (user) {
+        if (existedUser) {
             return {
                 error: "Такой пользователь уже есть",
                 res: null,
             }
         }
 
-        await addUser(regLogin, regPassword)
+        const user = await addUser(regLogin, regPassword)
+
+        console.log(user)
 
         return {
             error: null,
