@@ -18,7 +18,6 @@ const regFormSchema = yup.object().shape({
         .matches(/^\w+$/, "Неверно введен логин. Допускаются только латинские буквы, цифры")
         .min(3, "Неверно введен логин. Минимум 3 символа")
         .max(15, "Неверно введен логин. Максимум 15 символов"),
-
     password: yup.string()
         .required("Введите пароль")
         .matches(/^[\w#%]+$/, "Неверно введен пароль. Допускаются только латинские буквы, цифры и знаки # %")
@@ -28,7 +27,6 @@ const regFormSchema = yup.object().shape({
         .required("Введите пароль повторно")
         .oneOf([yup.ref("password"), null], "Пароли не совпадают"),
 })
-
 
 const RegistrationContainer = ({className}) => {
     const {
@@ -60,6 +58,7 @@ const RegistrationContainer = ({className}) => {
                 return
             }
             dispatch(setUser(res))
+            sessionStorage.setItem("userData", JSON.stringify(res))
         })
     }
 

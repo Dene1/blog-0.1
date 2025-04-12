@@ -3,14 +3,14 @@ import {useForm} from "react-hook-form"
 import {yupResolver} from "@hookform/resolvers/yup"
 import {server} from "../../bff"
 import {useState} from "react"
-import styled from "styled-components"
 import {AuthFormError, Button, H2, Input} from "../../components"
 import {Link, Navigate} from "react-router-dom"
 import {setUser} from "../../actions"
 import {useDispatch, useSelector} from "react-redux"
 import {selectUserRole} from "../../selectors"
 import {ROLE} from "../../constants"
-import {useResetForm} from "../../hooks/index.js"
+import {useResetForm} from "../../hooks"
+import styled from "styled-components"
 
 const authFormSchema = yup.object().shape({
     login: yup.string()
@@ -47,7 +47,6 @@ const AuthorizationContainer = ({className}) => {
         resolver: yupResolver(authFormSchema),
     })
 
-
     const [serverError, setServerError] = useState(null)
 
     const dispatch = useDispatch()
@@ -63,6 +62,7 @@ const AuthorizationContainer = ({className}) => {
                 return
             }
             dispatch(setUser(res))
+            sessionStorage.setItem("userData", JSON.stringify(res))
         })
     }
 
