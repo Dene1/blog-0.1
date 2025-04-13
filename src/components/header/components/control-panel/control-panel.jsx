@@ -9,7 +9,6 @@ import {logout} from "../../../../actions"
 const RightAligned = styled.div`
     display: flex;
     justify-content: flex-end;
-    align-items: center;
 `
 
 const StyledLink = styled(Link)`
@@ -50,6 +49,7 @@ const ControlPanelContainer = ({className}) => {
                 <RightAligned>
                     <UserName>{login}</UserName>
                     <Icon id="fa-sign-out"
+                          size="20px"
                           margin="0 0 0 10px"
                           onClick={onLogout}
                     />

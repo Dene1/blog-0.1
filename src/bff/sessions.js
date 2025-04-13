@@ -21,6 +21,11 @@ export const sessions = {
     async access(hash, accessRoles) {
         const dbSession = await getSession(hash)
 
-        return !!dbSession.user && accessRoles.includes(dbSession.user.roleId)
+        if (dbSession && dbSession.user) {
+            return accessRoles.includes(dbSession.user.roleId)
+        } else {
+            console.warn("Session not found or user is missing in session:", hash)
+            return false
+        }
     }
 }
