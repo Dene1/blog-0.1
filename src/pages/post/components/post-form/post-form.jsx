@@ -24,7 +24,6 @@ const Container = styled.div`
     }
 `
 
-
 const PostFormContainer = ({
                                className,
                                post: {
@@ -51,7 +50,6 @@ const PostFormContainer = ({
 
     const onSave = () => {
         const newContent = sanitizeContent(contentRef.current.innerHTML)
-
 
         dispatch(savePostAsync(requestServer, {
             id,

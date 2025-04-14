@@ -66,6 +66,17 @@
         "registeredAt": "2050-08-01",
         "roleId": 0
       }
+    },
+    {
+      "hash": "0.52407025333918366705177049880148842930793762207031",
+      "user": {
+        "id": "001",
+        "login": "ilya",
+        "password": "qwerty123",
+        "registeredAt": "2050-08-01",
+        "roleId": 0
+      },
+      "id": "vx_hXak"
     }
   ],
   "posts": [
