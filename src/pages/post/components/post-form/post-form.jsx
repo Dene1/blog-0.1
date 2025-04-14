@@ -2,11 +2,28 @@ import {Icon, Input} from "../../../../components"
 import {SpecialPanel} from "../special-panel/special-panel.jsx"
 import {useLayoutEffect, useRef, useState} from "react"
 import {sanitizeContent} from "./utils"
-import {useDispatch} from "react-redux"
-import {useNavigate} from "react-router-dom"
+import {useDispatch, useSelector} from "react-redux"
+import {Link, useNavigate} from "react-router-dom"
 import {savePostAsync} from "../../../../actions"
-import {useServerRequest} from "../../../../hooks/index.js"
+import {useServerRequest} from "../../../../hooks"
+import {selectUserSession} from "../../../../selectors"
 import styled from "styled-components"
+
+const Container = styled.div`
+    text-align: center;
+    font-size: 24px;
+
+    a:Link {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    a:Link:hover {
+        text-decoration: none;
+        opacity: 0.8;
+    }
+`
+
 
 const PostFormContainer = ({
                                className,
@@ -18,6 +35,7 @@ const PostFormContainer = ({
                                    publishedAt,
                                },
                            }) => {
+    const session = useSelector(selectUserSession);
     const [imageUrlValue, setImageUrlValue] = useState(imageUrl)
     const [titleValue, setTitleValue] = useState(title)
     const contentRef = useRef(null)
@@ -34,6 +52,7 @@ const PostFormContainer = ({
     const onSave = () => {
         const newContent = sanitizeContent(contentRef.current.innerHTML)
 
+
         dispatch(savePostAsync(requestServer, {
             id,
             imageUrl: imageUrlValue,
@@ -45,6 +64,15 @@ const PostFormContainer = ({
 
     const onImageChange = ({target}) => setImageUrlValue(target.value)
     const onTitleChange = ({target}) => setTitleValue(target.value)
+
+    if (!session) {
+        return (
+            <Container>
+                Вы должны войти в систему, чтобы создать или изменить пост.<br/>
+                Пожалуйста <Link to="/login">Войдите.</Link>
+            </Container>
+        );
+    }
 
     return (
         <div className={className}>
