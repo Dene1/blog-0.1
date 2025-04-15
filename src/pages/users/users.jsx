@@ -39,14 +39,12 @@ const UsersContainer = ({className}) => {
         if (!checkAccess([ROLE.ADMIN], userRole)) {
             return
         }
-
         requestServer("removeUser", userId).then(() => {
             setShouldUpdateUserList(!shouldUpdateUserList)
         })
     }
 
     return (
-
         <PrivateContent access={[ROLE.ADMIN]} serverError={errorMessage}>
             <div className={className}>
                 <H2>Пользователи</H2>

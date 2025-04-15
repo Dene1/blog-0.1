@@ -4,7 +4,9 @@ export const setUserRole = (userId, roleId) =>
         headers: {
             "Content-Type": "application/json;charset=utf-8",
         },
+
         body: JSON.stringify({
-            role_id: roleId,
+            role_id: Number(roleId),
         }),
+
     })
