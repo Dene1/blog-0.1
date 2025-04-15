@@ -102,6 +102,17 @@
         "roleId": 0
       },
       "id": "QDAdf1C"
+    },
+    {
+      "hash": "0.89358486759960897849452976515749469399452209472656",
+      "user": {
+        "id": "001",
+        "login": "ilya",
+        "password": "qwerty123",
+        "registeredAt": "2050-08-01",
+        "roleId": 0
+      },
+      "id": "gkmHnVJ"
     }
   ],
   "posts": [

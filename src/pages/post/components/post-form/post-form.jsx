@@ -8,6 +8,7 @@ import {savePostAsync} from "../../../../actions"
 import {useServerRequest} from "../../../../hooks"
 import {selectUserSession} from "../../../../selectors"
 import styled from "styled-components"
+import {PROP_TYPE} from "../../../../constants/index.js"
 
 const Container = styled.div`
     text-align: center;
@@ -118,3 +119,7 @@ export const PostForm = styled(PostFormContainer)`
         white-space: pre-line;
     }
 `
+
+PostForm.propTypes = {
+    post: PROP_TYPE.POST.isRequired
+}
