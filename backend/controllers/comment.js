@@ -1,7 +1,6 @@
 const Comment = require("../models/Comment")
 const Post = require("../models/Post")
 
-//add
 async function addComment(postId, comment) {
     const newComment = await Comment.create(comment)
 
@@ -12,15 +11,10 @@ async function addComment(postId, comment) {
     return newComment
 }
 
-//delete
-
 async function deleteComment(postId, commentId) {
     await Comment.deleteOne({_id: commentId})
     await Post.findByIdAndUpdate(postId, {$pull: {comments: commentId}})
-
 }
-
-//get list for post
 
 module.exports = {
     addComment,

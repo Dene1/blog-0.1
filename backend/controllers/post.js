@@ -1,18 +1,11 @@
 const Post = require("../models/Post")
 
-//add
 async function addPost(post) {
     const newPost = Post.create(post)
-
-    // await newPost.populate({
-    //     path: "comments",
-    //     populate: "author"
-    // })
 
     return newPost
 }
 
-//edit
 async function editPost(id, post) {
     const newPost = await Post.findByIdAndUpdate(id, post, {returnDocument: "after"})
 
@@ -24,12 +17,10 @@ async function editPost(id, post) {
     return newPost
 }
 
-//delete
 function deletePost(id) {
     return Post.deleteOne({_id: id})
 }
 
-//get list with pagination and search
 async function getPosts(search = "", page = 1, limit = 10) {
     const [posts, count] = await Promise.all([
         Post.find({
@@ -47,7 +38,6 @@ async function getPosts(search = "", page = 1, limit = 10) {
     }
 }
 
-//get item
 function getPost(id) {
     return Post.findById(id).populate({
         path: "comments",
