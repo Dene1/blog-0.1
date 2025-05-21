@@ -2,7 +2,7 @@ const express = require("express");
 const {register, login} = require("../controllers/user")
 const mapUser = require("../helpers/mapUser")
 
-const router = express.Router({mergeParams: true});
+const router = express.Router();
 
 router.post("/register", async (req, res) => {
     try {

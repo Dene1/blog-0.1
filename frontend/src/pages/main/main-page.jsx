@@ -13,7 +13,7 @@ const MainContainer = ({className}) => {
     const [shouldSearch, setShouldSearch] = useState(false)
 
     useEffect(() => {
-        request(`api/posts?searchPhrase=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`)
+        request(`/api/posts?searchPhrase=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`)
             .then(({data: {posts, lastPage}}) => {
                 setPosts(posts)
                 setLastPage(lastPage)
