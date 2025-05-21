@@ -19,7 +19,7 @@ app.use("/api", routes)
 app.use(express.static(path.join(__dirname, "..", "frontend", "dist")));
 
 app.get(/^\/(?!api).*/, (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "frontend", "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "..", "frontend", "dist", "index.html"))
 })
 
 mongoose.connect(process.env.DB_CONNECTION_STRING)
