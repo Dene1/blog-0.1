@@ -7,7 +7,7 @@ const mapComment = require("../helpers/mapComment")
 const hasRole = require("../middleware/hasRole")
 const ROLES = require("../constants/roles")
 
-const router = express.Router({mergeParams: true})
+const router = express.Router()
 
 router.get("/", async (req, res) => {
     const {posts, lastPage} = await getPosts(

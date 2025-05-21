@@ -2,27 +2,11 @@ import {Icon, Input} from "../../../../components/index.js"
 import {SpecialPanel} from "../special-panel/special-panel.jsx"
 import {useLayoutEffect, useRef, useState} from "react"
 import {sanitizeContent} from "./utils/index.js"
-import {useDispatch, useSelector} from "react-redux"
-import {Link, useNavigate} from "react-router-dom"
+import {useDispatch} from "react-redux"
+import {useNavigate} from "react-router-dom"
 import {savePostAsync} from "../../../../actions/index.js"
-import {selectUserSession} from "../../../../selectors/index.js"
 import styled from "styled-components"
 import {PROP_TYPE} from "../../../../constants/index.js"
-
-const Container = styled.div`
-    text-align: center;
-    font-size: 24px;
-
-    a:Link {
-        cursor: pointer;
-        text-decoration: underline;
-    }
-
-    a:Link:hover {
-        text-decoration: none;
-        opacity: 0.8;
-    }
-`
 
 const PostFormContainer = ({
                                className,
@@ -34,7 +18,6 @@ const PostFormContainer = ({
                                    publishedAt,
                                },
                            }) => {
-    const session = useSelector(selectUserSession);
     const [imageUrlValue, setImageUrlValue] = useState(imageUrl)
     const [titleValue, setTitleValue] = useState(title)
     const contentRef = useRef(null)
@@ -50,7 +33,6 @@ const PostFormContainer = ({
     const onSave = () => {
         const newContent = sanitizeContent(contentRef.current.innerHTML)
 
-
         function isValidUrl(url) {
             try {
                 new URL(url);
@@ -65,7 +47,7 @@ const PostFormContainer = ({
             return;
         }
 
-        dispatch(savePostAsync(id,{
+        dispatch(savePostAsync(id, {
             imageUrl: imageUrlValue,
             title: titleValue,
             content: newContent,
@@ -75,15 +57,6 @@ const PostFormContainer = ({
 
     const onImageChange = ({target}) => setImageUrlValue(target.value)
     const onTitleChange = ({target}) => setTitleValue(target.value)
-
-    // if (!session) {
-    //     return (
-    //         <Container>
-    //             Вы должны войти в систему, чтобы создать или изменить пост.<br/>
-    //             Пожалуйста <Link to="/login">Войдите.</Link>
-    //         </Container>
-    //     );
-    // }
 
     return (
         <div className={className}>
